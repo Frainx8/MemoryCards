@@ -28,7 +28,7 @@ namespace MemoryCards
             List<CardModel> cards = DBAccess.LoadCards();
             if(cards.Count != 0)
             {
-                LastID = cards[-1].ID;
+                LastID = cards[cards.Count - 1].ID;
             }
             else
             {
@@ -48,6 +48,7 @@ namespace MemoryCards
         {
             caller.Hide();
             caller.TopMost = false;
+            watchCardsForm.LoadCards();
             watchCardsForm.Show();
             watchCardsForm.TopMost = true;
         }

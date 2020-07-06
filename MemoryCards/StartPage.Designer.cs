@@ -77,6 +77,7 @@
             this.WatchCardsbtn.TabIndex = 5;
             this.WatchCardsbtn.Text = "Посмотреть карточки";
             this.WatchCardsbtn.UseVisualStyleBackColor = true;
+            this.WatchCardsbtn.Click += new System.EventHandler(this.WatchCardsbtn_Click);
             // 
             // labelN
             // 

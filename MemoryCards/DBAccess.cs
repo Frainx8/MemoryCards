@@ -23,7 +23,7 @@ namespace MemoryCards
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
-                return cnn.Query<CardModel>("select * from Tasks WHERE ID = @ID", card).First();
+                return cnn.Query<CardModel>("select * from Cards WHERE ID = @ID", card).First();
             }
         }
 
@@ -31,7 +31,7 @@ namespace MemoryCards
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
-                cnn.Execute("insert into Cards (ID, FirstPage, SecondPage, Due, Group) values (@ID, @FirstPage, @SecondPage, @Due, @Group);", card);
+                cnn.Execute("insert into Cards (ID, FirstPage, SecondPage, Due, CardGroup) values (@ID, @FirstPage, @SecondPage, @Due, @CardGroup)", card);
             }
         }
 

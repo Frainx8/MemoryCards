@@ -12,20 +12,20 @@ namespace MemoryCards
         public string FirstPage { get; set; }
         public string SecondPage { get; set; }
         public string Due { get; set; }
-        public int Group { get; set; }
+        public int CardGroup { get; set; }
 
         public CardModel()
         {
 
         }
 
-        public CardModel(int ID, string FirstPage, string SecondPage, string Due, int Group)
+        public CardModel(int ID, string FirstPage, string SecondPage, string Due, int CardGroup)
         {
             this.ID = ID;
             this.FirstPage = FirstPage;
             this.SecondPage = SecondPage;
             this.Due = Due;
-            this.Group = Group;
+            this.CardGroup = CardGroup;
         }
     }
 }

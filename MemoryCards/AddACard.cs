@@ -44,6 +44,7 @@ namespace MemoryCards
             {
                 mainForm.LastID++; //Add one before adding in the DB
                 CardModel card = new CardModel(mainForm.LastID, AddFirstbox.Text, AddSecondbox.Text, DateTime.Now.ToString("dd.MM.yy"), GROUP);
+                DBAccess.SaveCard(card);
                 AddFirstbox.Text = "";
                 AddSecondbox.Text = "";
             }
