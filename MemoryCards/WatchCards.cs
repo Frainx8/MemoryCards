@@ -12,8 +12,15 @@ namespace MemoryCards
 {
     public partial class WatchCards : Form
     {
+        private MainForm mainForm;
         public WatchCards()
         {
+            InitializeComponent();
+        }
+
+        public WatchCards(Form owner)
+        {
+            mainForm = owner as MainForm;
             InitializeComponent();
         }
 

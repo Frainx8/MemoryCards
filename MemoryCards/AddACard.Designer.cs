@@ -31,8 +31,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.AddCardsbtn = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnBack = new System.Windows.Forms.Button();
+            this.addACardbtn = new System.Windows.Forms.Button();
             this.AddFirstbox = new System.Windows.Forms.RichTextBox();
             this.AddSecondbox = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
@@ -67,25 +67,27 @@
             this.label3.TabIndex = 2;
             this.label3.Text = "Карточка сзади";
             // 
-            // AddCardsbtn
+            // btnBack
             // 
-            this.AddCardsbtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.AddCardsbtn.Location = new System.Drawing.Point(43, 370);
-            this.AddCardsbtn.Name = "AddCardsbtn";
-            this.AddCardsbtn.Size = new System.Drawing.Size(174, 50);
-            this.AddCardsbtn.TabIndex = 5;
-            this.AddCardsbtn.Text = "Вернуться";
-            this.AddCardsbtn.UseVisualStyleBackColor = true;
+            this.btnBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnBack.Location = new System.Drawing.Point(43, 370);
+            this.btnBack.Name = "btnBack";
+            this.btnBack.Size = new System.Drawing.Size(174, 50);
+            this.btnBack.TabIndex = 5;
+            this.btnBack.Text = "Вернуться";
+            this.btnBack.UseVisualStyleBackColor = true;
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
-            // button1
+            // addACardbtn
             // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button1.Location = new System.Drawing.Point(578, 370);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(174, 50);
-            this.button1.TabIndex = 6;
-            this.button1.Text = "Добавить";
-            this.button1.UseVisualStyleBackColor = true;
+            this.addACardbtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.addACardbtn.Location = new System.Drawing.Point(578, 370);
+            this.addACardbtn.Name = "addACardbtn";
+            this.addACardbtn.Size = new System.Drawing.Size(174, 50);
+            this.addACardbtn.TabIndex = 6;
+            this.addACardbtn.Text = "Добавить";
+            this.addACardbtn.UseVisualStyleBackColor = true;
+            this.addACardbtn.Click += new System.EventHandler(this.addACardbtn_Click);
             // 
             // AddFirstbox
             // 
@@ -113,8 +115,8 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.AddSecondbox);
             this.Controls.Add(this.AddFirstbox);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.AddCardsbtn);
+            this.Controls.Add(this.addACardbtn);
+            this.Controls.Add(this.btnBack);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -130,8 +132,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button AddCardsbtn;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnBack;
+        private System.Windows.Forms.Button addACardbtn;
         private System.Windows.Forms.RichTextBox AddFirstbox;
         private System.Windows.Forms.RichTextBox AddSecondbox;
     }

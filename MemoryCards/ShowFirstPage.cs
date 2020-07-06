@@ -12,6 +12,12 @@ namespace MemoryCards
 {
     public partial class ShowFirstPage : Form
     {
+        private MainForm mainForm;
+        public ShowFirstPage(Form owner)
+        {
+            mainForm = owner as MainForm;
+            InitializeComponent();
+        }
         public ShowFirstPage()
         {
             InitializeComponent();

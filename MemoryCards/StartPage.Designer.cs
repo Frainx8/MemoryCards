@@ -45,6 +45,7 @@
             this.AddCardsbtn.TabIndex = 0;
             this.AddCardsbtn.Text = "Добавить карточки";
             this.AddCardsbtn.UseVisualStyleBackColor = true;
+            this.AddCardsbtn.Click += new System.EventHandler(this.AddCardsbtn_Click);
             // 
             // label1
             // 
@@ -110,6 +111,7 @@
             this.Controls.Add(this.AddCardsbtn);
             this.Name = "StartPage";
             this.Text = "StartPage";
+            this.Load += new System.EventHandler(this.StartPage_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

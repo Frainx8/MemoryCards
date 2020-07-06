@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace MemoryCards
 {
-    public class SqliteDataAccess
+    public class DBAccess
     {
 
         public static List<CardModel> LoadCards()
