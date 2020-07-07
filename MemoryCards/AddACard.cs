@@ -54,5 +54,10 @@ namespace MemoryCards
         {
             mainForm.ShowStartPageForm(this);
         }
+
+        private void AddACard_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

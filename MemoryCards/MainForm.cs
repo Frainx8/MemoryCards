@@ -17,7 +17,7 @@ namespace MemoryCards
             startPageForm = new StartPage(this) { Dock = DockStyle.Fill, TopLevel = false, FormBorderStyle = FormBorderStyle.None };
             watchCardsForm = new WatchCards(this) { Dock = DockStyle.Fill, TopLevel = false, FormBorderStyle = FormBorderStyle.None };
             showFirstPageForm = new ShowFirstPage(this) { Dock = DockStyle.Fill, TopMost = true, TopLevel = false, FormBorderStyle = FormBorderStyle.None };
-            showACardForm = new ShowACard(this) { Dock = DockStyle.Fill, TopLevel = false, FormBorderStyle = FormBorderStyle.None };
+            showACardForm = new ShowACard(this, showFirstPageForm) { Dock = DockStyle.Fill, TopLevel = false, FormBorderStyle = FormBorderStyle.None };
             addACardForm = new AddACard(this) { Dock = DockStyle.Fill, TopLevel = false, FormBorderStyle = FormBorderStyle.None };
             InitializeComponent();
         }
@@ -48,24 +48,25 @@ namespace MemoryCards
         {
             caller.Hide();
             caller.TopMost = false;
-            if(watchCardsForm.IsLoaded != true)
-            {
-                watchCardsForm.LoadCards();
-            }
+            watchCardsForm.LoadCards();
             watchCardsForm.Show();
             watchCardsForm.TopMost = true;
         }
-        public void ShowShowFirstPageForm(Form caller)
+        public void ShowFirstPageForm(Form caller)
         {
             caller.Hide();
             caller.TopMost = false;
+            showFirstPageForm.LoadTodaysCards();
             showFirstPageForm.Show();
             showFirstPageForm.TopMost = true;
         }
-        public void ShowShowACardForm(Form caller)
+        public void ShowACardForm(Form caller, CardModel card)
         {
             caller.Hide();
             caller.TopMost = false;
+            showFirstPageForm.ClearTodaysCards();
+            showACardForm.Card = card;
+            showACardForm.ShowTheCard();
             showACardForm.Show();
             showACardForm.TopMost = true;
         }

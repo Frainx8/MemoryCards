@@ -6,13 +6,35 @@ using System.Threading.Tasks;
 
 namespace MemoryCards
 {
-    public class CardModel
+    public class CardModel : IEquatable<CardModel>
     {
         public int ID { get; set; }
         public string FirstPage { get; set; }
         public string SecondPage { get; set; }
         public string Due { get; set; }
-        public int CardGroup { get; set; }
+        private int cardGroup;
+        public int CardGroup
+        {
+            get
+            {
+                return cardGroup;
+            }
+            set
+            {
+                if(value < 0)
+                {
+                    cardGroup = 1;
+                }
+                else if(value > 3)
+                {
+                    cardGroup = 3;
+                }
+                else
+                {
+                    cardGroup = value;
+                }
+            }
+        }
 
         public CardModel()
         {
@@ -26,6 +48,22 @@ namespace MemoryCards
             this.SecondPage = SecondPage;
             this.Due = Due;
             this.CardGroup = CardGroup;
+        }
+
+        public bool Equals(CardModel other)
+        {
+            if (other == null)
+            {
+                return false;
+            }
+            else if (ID == other.ID)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

@@ -43,11 +43,18 @@ namespace MemoryCards
             }
         }
 
-        public static void UpdateCard(CardModel card)
+        public static void UpdateCard(CardModel card, char key = '0')
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
-                cnn.Execute("UPDATE Cards set FirstPage = @FirstPage, SecondPage = @SecondPage WHERE ID = @ID", card);
+                if(key == 'g')
+                {
+                    cnn.Execute("UPDATE Cards set CardGroup = @CardGroup, Due = @Due WHERE ID = @ID", card);
+                }
+                else
+                {
+                    cnn.Execute("UPDATE Cards set FirstPage = @FirstPage, SecondPage = @SecondPage WHERE ID = @ID", card);
+                }
             }
         }
 

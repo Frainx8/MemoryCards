@@ -45,5 +45,10 @@ namespace MemoryCards
         {
             mainForm.ShowWatchCardsForm(this);
         }
+
+        private void LearnCardsbtn_Click(object sender, EventArgs e)
+        {
+            mainForm.ShowFirstPageForm(this);
+        }
     }
 }

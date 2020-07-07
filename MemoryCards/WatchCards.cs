@@ -14,7 +14,6 @@ namespace MemoryCards
     {
         private MainForm mainForm;
         private Label lblWithID = new Label { Visible = false };
-        public bool IsLoaded { get; private set; }
         public WatchCards()
         {
             InitializeComponent();
@@ -45,8 +44,6 @@ namespace MemoryCards
 
                 tableLayoutPanel.Controls.Add(firstPage, 0, tableLayoutPanel.RowCount - 1);
                 tableLayoutPanel.Controls.Add(secondPage, 1, tableLayoutPanel.RowCount - 1);
-
-                IsLoaded = true;
             }
 
         }
@@ -70,6 +67,10 @@ namespace MemoryCards
 
         private void btnBack_Click(object sender, EventArgs e)
         {
+            for(int i = tableLayoutPanel.RowCount - 1; i > 0; i --)
+            {
+                RemoveArbitraryRow(tableLayoutPanel, i);
+            }
             mainForm.ShowStartPageForm(this);
         }
 
@@ -97,17 +98,20 @@ namespace MemoryCards
 
         private void Deletebtn_Click(object sender, EventArgs e)
         {
-            CardModel card = new CardModel() { ID = Int32.Parse(lblWithID.Name) };
-            DBAccess.DeleteCard(card);
+            if(lblWithID.Name != "-1")
+            {
+                CardModel card = new CardModel() { ID = Int32.Parse(lblWithID.Name) };
+                DBAccess.DeleteCard(card);
 
-            int rowIndex = tableLayoutPanel.GetRow(Controls.Find("firP#" + lblWithID.Name, true).FirstOrDefault());
+                int rowIndex = tableLayoutPanel.GetRow(Controls.Find("firP#" + lblWithID.Name, true).FirstOrDefault());
 
-            lblWithID.Name = "-1";
+                lblWithID.Name = "-1";
 
-            textBox1.Text = "";
-            textBox2.Text = "";
+                textBox1.Text = "";
+                textBox2.Text = "";
 
-            RemoveArbitraryRow(tableLayoutPanel, rowIndex);
+                RemoveArbitraryRow(tableLayoutPanel, rowIndex);
+            }
         }
 
         private void RemoveArbitraryRow(TableLayoutPanel panel, int rowIndex)
