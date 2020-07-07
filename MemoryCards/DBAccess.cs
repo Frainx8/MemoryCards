@@ -43,6 +43,14 @@ namespace MemoryCards
             }
         }
 
+        public static void UpdateCard(CardModel card)
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                cnn.Execute("UPDATE Cards set FirstPage = @FirstPage, SecondPage = @SecondPage WHERE ID = @ID", card);
+            }
+        }
+
         private static string LoadConnectionString(string id = "Default")
         {
             return ConfigurationManager.ConnectionStrings[id].ConnectionString;

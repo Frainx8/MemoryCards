@@ -48,7 +48,10 @@ namespace MemoryCards
         {
             caller.Hide();
             caller.TopMost = false;
-            watchCardsForm.LoadCards();
+            if(watchCardsForm.IsLoaded != true)
+            {
+                watchCardsForm.LoadCards();
+            }
             watchCardsForm.Show();
             watchCardsForm.TopMost = true;
         }

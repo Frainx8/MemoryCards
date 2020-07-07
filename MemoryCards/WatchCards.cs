@@ -13,6 +13,8 @@ namespace MemoryCards
     public partial class WatchCards : Form
     {
         private MainForm mainForm;
+        private Label lblWithID = new Label { Visible = false };
+        public bool IsLoaded { get; private set; }
         public WatchCards()
         {
             InitializeComponent();
@@ -39,10 +41,12 @@ namespace MemoryCards
 
                 Label secondPage = new Label() { Text = card.Due };
                 secondPage.Click += new EventHandler(WatchACard);
-                firstPage.Name = "secP#" + card.ID;
+                secondPage.Name = "secP#" + card.ID;
 
                 tableLayoutPanel.Controls.Add(firstPage, 0, tableLayoutPanel.RowCount - 1);
                 tableLayoutPanel.Controls.Add(secondPage, 1, tableLayoutPanel.RowCount - 1);
+
+                IsLoaded = true;
             }
 
         }
@@ -56,8 +60,9 @@ namespace MemoryCards
         {
             Label label = sender as Label;
             CardModel nullCard = new CardModel();
-            Console.WriteLine(label.Name);
-            nullCard.ID = Int32.Parse(label.Name.Substring(5));
+            int id = Int32.Parse(label.Name.Substring(5));
+            nullCard.ID = id;
+            lblWithID.Name = id.ToString();
             CardModel card = DBAccess.LoadACard(nullCard);
             textBox1.Text = card.FirstPage;
             textBox2.Text = card.SecondPage;
@@ -76,6 +81,68 @@ namespace MemoryCards
         private void tableLayoutPanel_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void ChangeCardbtn_Click(object sender, EventArgs e)
+        {
+            if(lblWithID.Name != "-1")
+            {
+                CardModel card = new CardModel() { ID = Int32.Parse(lblWithID.Name), FirstPage = textBox1.Text, SecondPage = textBox2.Text };
+                DBAccess.UpdateCard(card);
+
+                Label firLabel = Controls.Find("firP#" + lblWithID.Name, true).FirstOrDefault() as Label;
+                firLabel.Text = card.FirstPage;
+            }
+        }
+
+        private void Deletebtn_Click(object sender, EventArgs e)
+        {
+            CardModel card = new CardModel() { ID = Int32.Parse(lblWithID.Name) };
+            DBAccess.DeleteCard(card);
+
+            int rowIndex = tableLayoutPanel.GetRow(Controls.Find("firP#" + lblWithID.Name, true).FirstOrDefault());
+
+            lblWithID.Name = "-1";
+
+            textBox1.Text = "";
+            textBox2.Text = "";
+
+            RemoveArbitraryRow(tableLayoutPanel, rowIndex);
+        }
+
+        private void RemoveArbitraryRow(TableLayoutPanel panel, int rowIndex)
+        {
+            if (rowIndex >= panel.RowCount)
+            {
+                return;
+            }
+
+            // delete all controls of row that we want to delete
+            for (int i = 0; i < panel.ColumnCount; i++)
+            {
+                var control = panel.GetControlFromPosition(i, rowIndex);
+                panel.Controls.Remove(control);
+            }
+
+            // move up row controls that comes after row we want to remove
+            for (int i = rowIndex + 1; i < panel.RowCount; i++)
+            {
+                for (int j = 0; j < panel.ColumnCount; j++)
+                {
+                    var control = panel.GetControlFromPosition(j, i);
+                    if (control != null)
+                    {
+                        panel.SetRow(control, i - 1);
+                    }
+                }
+            }
+
+            var removeStyle = panel.RowCount - 1;
+
+            if (panel.RowStyles.Count > removeStyle)
+                panel.RowStyles.RemoveAt(removeStyle);
+
+            panel.RowCount--;
         }
     }
 }
